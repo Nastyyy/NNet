@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Connection {
     private Neuron sourceNeuron;
     private Neuron targetNeuron;
