@@ -2,7 +2,7 @@ public class Connection {
     private Neuron sourceNeuron;
     private Neuron targetNeuron;
     private double signal;
-    private double weight;
+    private double weight = 1.0;
 
     public Connection(Neuron source, Neuron target) {
         this.sourceNeuron = source;
@@ -13,8 +13,6 @@ public class Connection {
             this.targetNeuron = target;
             this.targetNeuron.AddInConnection(this);
         }
-
-        this.weight = 0.0;
     }
 
     public Neuron getSourceNeuron() { return this.sourceNeuron; }

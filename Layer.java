@@ -35,7 +35,7 @@ public class Layer {
     // Creates connections that have no weight 
     public void createInputConnections() {
         for(int i=0; i < this.inputData.length; i++) {
-            Neuron neuron = new Neuron(this.function, true);
+            Neuron neuron = new Neuron(this.function);
             Connection conn = new Connection(neuron, null);
             conn.setSignal(inputData[i]);
             neuron.inConnections.add(conn);

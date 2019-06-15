@@ -8,16 +8,10 @@ public class Neuron {
     ArrayList<Connection> outConnections = new ArrayList<Connection>();
     Function function;
     private double bias = 0.0;
-    private boolean input = false;
 
 
     public Neuron(Function function) {
         this.function = function;
-    }
-
-    public Neuron(Function function, boolean input) {
-        this.function = function;
-        this.input = input;
     }
 
     public void Activate() {
@@ -39,12 +33,9 @@ public class Neuron {
             inSignals.add(conn.getSignal());
         }
 
-        if(!input) {
-            return (LinearAlgebra.VectorDotProduct(inWeights, inSignals) + this.bias);
-        } else {
-            return inSignals.get(0);
-        }
+        return (LinearAlgebra.VectorDotProduct(inWeights, inSignals) + this.bias);
     }
+
 
     public ArrayList<Connection> CreateConnectionsToLayer(Layer targetLayer) {
         for(Neuron neuron: targetLayer.getNeurons()) {
