@@ -1,7 +1,4 @@
 import Function.*;
-import Util.LinearAlgebra;
-import java.util.ArrayList;
-import java.util.List;
 import java.lang.Math;
 
 public class NNet {
