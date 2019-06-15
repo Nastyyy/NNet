@@ -4,9 +4,6 @@ import Function.Function;
 
 public class Network {
     private ArrayList<Layer> layers = new ArrayList<Layer>();
-    private double[] input;
-
-    public Network addInputData(double[] input) { this.input = input; return this; }
 
     public Network addInputLayer(double[] inputData, Function function) {
         layers.add(new Layer(inputData, function));
@@ -27,7 +24,6 @@ public class Network {
 
     public Network Run() {
         for(Layer layer: this.layers) {
-            // Set Input Layer's Neurons Connections Signals to inputData
             layer.ActivateNeurons();             
         }
         return this;
