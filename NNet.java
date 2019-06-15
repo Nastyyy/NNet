@@ -5,7 +5,7 @@ public class NNet {
     public static void main(String args[]) {
         double[] inputData = {0.0,1.0};
 
-        // TODO: Run and Learn
+        // TODO: Learn
         Network net = new Network()
                 .addInputLayer(inputData, new Input())
                 .addHiddenLayer(2, new Sigmoid())
