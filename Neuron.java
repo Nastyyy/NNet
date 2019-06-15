@@ -48,10 +48,8 @@ public class Neuron {
 
     public ArrayList<Connection> CreateConnectionsToLayer(Layer targetLayer) {
         for(Neuron neuron: targetLayer.getNeurons()) {
-            //System.out.println("Connection being made: " + this + " --> " + neuron);
             this.CreateConnection(neuron);
         }
-        //System.out.println("---------------------------------------");
         return this.getOutConnections();
     }
 
