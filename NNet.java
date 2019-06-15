@@ -2,10 +2,11 @@ import Function.*;
 import Util.LinearAlgebra;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Math;
 
 public class NNet {
     public static void main(String args[]) {
-        double[] inputData = {1.0,1.0};
+        double[] inputData = {0.0,1.0};
 
         // TODO: Run and Learn
         Network net = new Network()
@@ -39,7 +40,6 @@ public class NNet {
 
         for(Neuron neuron: net.getLayers().get(0).getNeurons()) {
             for(Connection conn: neuron.getInConnections()) {
-                System.out.println(conn + " " + conn.getSourceNeuron() + " " + conn.getTargetNeuron());
                 System.out.println(conn.getSignal());
             }
         }
@@ -48,7 +48,7 @@ public class NNet {
         for(Layer layer: net.getLayers()) {
             System.out.println("------ " + layer.getType() + " ------");
             for(Neuron neuron: layer.getNeurons()) {
-                System.out.println(neuron + " -> " + neuron.getSignal());
+                System.out.println(neuron + " -> " + Math.round(neuron.getSignal()));
             }
         }
 
