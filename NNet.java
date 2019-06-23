@@ -10,38 +10,15 @@ public class NNet {
 
     public static final String fileExtension = "nnet";
     public static void main(String args[]) {
-        double[] inputData = {1.0,1.0};
+        double[] inputData = {1.0,0.0};
 
-        // TODO: Learn
-        Network net = new Network()
-                .addInputLayer(inputData, new Input())
-                .addHiddenLayer(2, new Sigmoid())
-                .addOutputLayer(1, new Sigmoid()
-        );
-
-
-        // Set neurons bias
-        net.getLayers().get(1).getNeurons().get(0).setBias(-10.0);
-        net.getLayers().get(1).getNeurons().get(1).setBias(30.0);
-        net.getLayers().get(2).getNeurons().get(0).setBias(-30.0);
-
-        // Set weights
-        for(Neuron neuron: net.getLayers().get(0).getNeurons()) {
-            //System.out.println(neuron.getOutConnections().get(0).getTargetNeuron());
-            neuron.getOutConnections().get(0).setWeight(20.0);
-            neuron.getOutConnections().get(1).setWeight(-20.0);
-        }
-
-        for(Neuron neuron: net.getLayers().get(1).getNeurons()) {
-            neuron.getOutConnections().get(0).setWeight(20.0);
-        }
+        Network net = loadNetwork("XORnet");
+        net.setInputData(inputData)
+            .Run();
 
         printNetwork(net);
         System.out.println("\n");
         printNetworkSignals(net);
-
-        net.Run();
-        saveNetwork(net, "XORnet");
     }
 
     public static void printNetworkSignals(Network net) {
