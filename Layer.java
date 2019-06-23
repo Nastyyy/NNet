@@ -56,6 +56,7 @@ public class Layer implements Serializable {
         }
     }
 
+    public Neuron getNeuronAt(int i) { return this.getNeurons().get(i); }
     public ArrayList<Neuron> getNeurons() { return this.neurons; }
     public LayerType getType() { return this.type; }
 }

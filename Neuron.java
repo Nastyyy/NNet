@@ -56,6 +56,8 @@ public class Neuron implements Serializable {
         this.inConnections.add(inConnection);
     }
 
+    public Connection getInConnectionAt(int i) { return this.getInConnections().get(i); }
+    public Connection getOutConnectionAt(int i) { return this.getOutConnections().get(i); }
     public ArrayList<Connection> getInConnections() { return this.inConnections; }
     public ArrayList<Connection> getOutConnections() { return this.outConnections; }
     public double getBias() { return this.bias; }

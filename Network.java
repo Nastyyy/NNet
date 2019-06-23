@@ -31,6 +31,7 @@ public class Network implements Serializable {
         return this;
     }
 
+    public Layer getLayerAt(int i) { return this.getLayers().get(i); }
     public ArrayList<Layer> getLayers() { return this.layers; }
     public int getLayersSize() { return this.layers.size(); }
 }
