@@ -56,12 +56,13 @@ public class NNet {
         }
 
         saveNetwork(net);
+
     }
 
     public static void saveNetwork(Network net) {
         System.out.println("------------- Saving network... ----------------");
         try {
-            FileOutputStream fos = new FileOutputStream("network.net");
+            FileOutputStream fos = new FileOutputStream("network.nnet");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(net);
             oos.close();
