@@ -31,6 +31,14 @@ public class Network implements Serializable {
         return this;
     }
 
+    public Network setInputData(double[] inputData) {
+        Layer inputLayer = this.getLayerAt(0);
+        for(int i=0; i < inputData.length; i++) {
+            inputLayer.getNeuronAt(i).getInConnectionAt(0).setSignal(inputData[i]);
+        }
+        return this;
+    }
+
     public Layer getLayerAt(int i) { return this.getLayers().get(i); }
     public ArrayList<Layer> getLayers() { return this.layers; }
     public int getLayersSize() { return this.layers.size(); }
