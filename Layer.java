@@ -1,10 +1,12 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Function.Function;
 
 enum LayerType { Input, Hidden, Output }
 
-public class Layer {
+public class Layer implements Serializable {
+    private static final long serialVersionUID = 2L;
     private ArrayList<Neuron> neurons = new ArrayList<Neuron>();
     private LayerType type;
     private Function function;

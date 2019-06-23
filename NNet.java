@@ -1,9 +1,14 @@
 import Function.*;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
 import java.lang.Math;
 
 public class NNet {
     public static void main(String args[]) {
-        double[] inputData = {0.0,1.0};
+        double[] inputData = {1.0,1.0};
 
         // TODO: Learn
         Network net = new Network()
@@ -40,6 +45,7 @@ public class NNet {
                 System.out.println(conn.getSignal());
             }
         }
+
         //System.out.println(net.getLayers().get(0).getNeurons().get(0).getInConnections());
 
         for(Layer layer: net.getLayers()) {
@@ -49,7 +55,34 @@ public class NNet {
             }
         }
 
-        System.out.println("-----------------------------");
+        saveNetwork(net);
+    }
+
+    public static void saveNetwork(Network net) {
+        System.out.println("------------- Saving network... ----------------");
+        try {
+            FileOutputStream fos = new FileOutputStream("network.net");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(net);
+            oos.close();
+            fos.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Network loadNetwork(String path) {
+        try {
+			FileInputStream fis = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Network net = (Network) ois.readObject();
+			ois.close();
+            return net;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void printNet(Network net) {

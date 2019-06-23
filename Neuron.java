@@ -1,9 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Function.Function;
 import Util.LinearAlgebra;
 
-public class Neuron {
+public class Neuron implements Serializable {
+    private static final long serialVersionUID = 3L;
     ArrayList<Connection> inConnections = new ArrayList<Connection>();
     ArrayList<Connection> outConnections = new ArrayList<Connection>();
     Function function;

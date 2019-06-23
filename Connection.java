@@ -1,4 +1,7 @@
-public class Connection {
+import java.io.Serializable;
+
+public class Connection implements Serializable {
+    private static final long serialVersionUID = 4L;
     private Neuron sourceNeuron;
     private Neuron targetNeuron;
     private double signal;

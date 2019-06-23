@@ -1,8 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Function.Function;
 
-public class Network {
+public class Network implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<Layer> layers = new ArrayList<Layer>();
 
     public Network addInputLayer(double[] inputData, Function function) {
