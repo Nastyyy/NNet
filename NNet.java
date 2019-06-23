@@ -9,39 +9,17 @@ import java.lang.Math;
 public class NNet {
 
     public static final String fileExtension = "nnet";
+    public static final String networkFile = "XORnet";
     public static void main(String args[]) {
-        double[] inputData = {1.0,0.0};
+        double[] inputData = {1.0,1.0};
 
-        Network net = loadNetwork("XORnet");
+        Network net = loadNetwork(networkFile);
         net.setInputData(inputData)
             .Run();
 
         printNetwork(net);
         System.out.println("\n");
         printNetworkSignals(net);
-    }
-
-    public static void printNetworkSignals(Network net) {
-        for(Layer layer: net.getLayers()) {
-            System.out.println("------ " + layer.getType() + " ------");
-            for(Neuron neuron: layer.getNeurons()) {
-                System.out.println(neuron + " -> " + Math.round(neuron.getSignal()));
-            }
-        }
-    }
-
-    public static void saveNetwork(Network net, String file) {
-        System.out.println("\n              Saving network as " + file + ".nnet...            \n");
-        try {
-            FileOutputStream fos = new FileOutputStream(file + "." + fileExtension);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(net);
-            oos.close();
-            fos.close();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static Network loadNetwork(String path) {
@@ -72,4 +50,29 @@ public class NNet {
             }
         }
     }
+
+    public static void printNetworkSignals(Network net) {
+        for(Layer layer: net.getLayers()) {
+            System.out.println("------ " + layer.getType() + " ------");
+            for(Neuron neuron: layer.getNeurons()) {
+                System.out.println(neuron + " -> " + Math.round(neuron.getSignal()));
+            }
+        }
+    }
+
+    public static void saveNetwork(Network net, String file) {
+        System.out.println("\n              Saving network as " + file + ".nnet...            \n");
+        try {
+            FileOutputStream fos = new FileOutputStream(file + "." + fileExtension);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(net);
+            oos.close();
+            fos.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
