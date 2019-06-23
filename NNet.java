@@ -17,7 +17,6 @@ public class NNet {
                 .addOutputLayer(1, new Sigmoid()
         );
 
-        printNet(net);
 
         // Set neurons bias
         net.getLayers().get(1).getNeurons().get(0).setBias(-10.0);
@@ -35,27 +34,22 @@ public class NNet {
             neuron.getOutConnections().get(0).setWeight(20.0);
         }
 
-        System.out.println("\n\n");
+        printNetwork(net);
+        System.out.println("\n");
+        printNetworkSignals(net);
 
-        // Now run
         net.Run();
 
-        for(Neuron neuron: net.getLayers().get(0).getNeurons()) {
-            for(Connection conn: neuron.getInConnections()) {
-                System.out.println(conn.getSignal());
-            }
-        }
+        saveNetwork(net, "XORnet");
+    }
 
-        //System.out.println(net.getLayers().get(0).getNeurons().get(0).getInConnections());
-
+    public static void printNetworkSignals(Network net) {
         for(Layer layer: net.getLayers()) {
             System.out.println("------ " + layer.getType() + " ------");
             for(Neuron neuron: layer.getNeurons()) {
                 System.out.println(neuron + " -> " + Math.round(neuron.getSignal()));
             }
         }
-
-        saveNetwork(net, "XORnet");
     }
 
     public static void saveNetwork(Network net, String file) {
@@ -85,7 +79,7 @@ public class NNet {
         }
     }
 
-    public static void printNet(Network net) {
+    public static void printNetwork(Network net) {
         for(Layer layer: net.getLayers()) {
             System.out.println("------ " + layer.getType() + " -----");
             for(Neuron neuron: layer.getNeurons()) {
