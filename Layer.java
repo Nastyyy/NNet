@@ -38,9 +38,8 @@ public class Layer implements Serializable {
     public void createInputConnections() {
         for(int i=0; i < this.inputData.length; i++) {
             Neuron neuron = new Neuron(this.function);
-            Connection conn = new Connection(neuron, null);
+            Connection conn = new Connection(null, neuron);
             conn.setSignal(inputData[i]);
-            neuron.inConnections.add(conn);
             this.neurons.add(neuron);
         }
     }
