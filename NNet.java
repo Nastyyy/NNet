@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.lang.Math;
 
 public class NNet {
+
+    public static final String fileExtension = "nnet";
     public static void main(String args[]) {
         double[] inputData = {1.0,1.0};
 
@@ -39,7 +41,6 @@ public class NNet {
         printNetworkSignals(net);
 
         net.Run();
-
         saveNetwork(net, "XORnet");
     }
 
@@ -55,7 +56,7 @@ public class NNet {
     public static void saveNetwork(Network net, String file) {
         System.out.println("\n              Saving network as " + file + ".nnet...            \n");
         try {
-            FileOutputStream fos = new FileOutputStream(file);
+            FileOutputStream fos = new FileOutputStream(file + "." + fileExtension);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(net);
             oos.close();
@@ -68,7 +69,7 @@ public class NNet {
 
     public static Network loadNetwork(String path) {
         try {
-			FileInputStream fis = new FileInputStream(path + ".nnet");
+			FileInputStream fis = new FileInputStream(path + "." + fileExtension);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Network net = (Network) ois.readObject();
 			ois.close();
