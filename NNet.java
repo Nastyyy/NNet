@@ -55,14 +55,13 @@ public class NNet {
             }
         }
 
-        saveNetwork(net);
-
+        saveNetwork(net, "XORnet");
     }
 
-    public static void saveNetwork(Network net) {
-        System.out.println("------------- Saving network... ----------------");
+    public static void saveNetwork(Network net, String file) {
+        System.out.println("\n              Saving network as " + file + ".nnet...            \n");
         try {
-            FileOutputStream fos = new FileOutputStream("network.nnet");
+            FileOutputStream fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(net);
             oos.close();
@@ -75,7 +74,7 @@ public class NNet {
 
     public static Network loadNetwork(String path) {
         try {
-			FileInputStream fis = new FileInputStream(path);
+			FileInputStream fis = new FileInputStream(path + ".nnet");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Network net = (Network) ois.readObject();
 			ois.close();
