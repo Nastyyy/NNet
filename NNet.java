@@ -11,12 +11,10 @@ public class NNet {
     public static final String fileExtension = "nnet";
     public static final String networkFile = "XORnet";
     public static void main(String args[]) {
-        double[] inputData = {1.0,1.0};
+        
+        Network net = Networks.XORnet();
 
-        Network net = loadNetwork(networkFile);
-        net.setInputData(inputData)
-            .Run();
-
+        net.Run();
         printNetwork(net);
         System.out.println("\n");
         printNetworkSignals(net);
