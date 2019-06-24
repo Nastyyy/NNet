@@ -14,13 +14,13 @@ public class Network implements Serializable {
 
     public Network addHiddenLayer(int size, Function function) {
         layers.add(new Layer(size, function, LayerType.Hidden));
-        layers.get(layers.size()-2).ConnectLayerToLayer(layers.get(layers.size()-1));
+        this.getLayerAt(this.getLayersSize()-2).ConnectLayerToLayer(this.getLayerAt(this.getLayersSize()-1));
         return this;
     }
 
     public Network addOutputLayer(int size, Function function) {
         layers.add(new Layer(size, function, LayerType.Output));
-        layers.get(layers.size()-2).ConnectLayerToLayer(layers.get(layers.size()-1));
+        this.getLayerAt(layers.size()-2).ConnectLayerToLayer(this.getLayerAt(this.getLayersSize()-1));
         return this;
     }
 
