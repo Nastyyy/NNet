@@ -2,10 +2,26 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import Function.Function;
+import Loss.Loss;
 
 public class Network implements Serializable {
     private static final long serialVersionUID = 1L;
     private ArrayList<Layer> layers = new ArrayList<Layer>();
+    private Loss lossFunction;
+
+    public Network(Loss lossFunction) {
+        this.lossFunction = lossFunction;
+    }
+
+    public double getLoss(double[] truths) { 
+        double output = 0;
+        Layer outputLayer = this.getLayerAt(this.getLayersSize()-1);
+        for(int i=0; i < outputLayer.getNeurons().size(); i++) {
+            output += this.lossFunction.getOutput(truths[i], outputLayer.getNeuronAt(i).getSignal());
+        }
+
+        return output;
+    }
 
     public Network addInputLayer(double[] inputData, Function function) {
         layers.add(new Layer(inputData, function));

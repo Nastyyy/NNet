@@ -1,4 +1,5 @@
 import Function.*;
+import Loss.*;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -9,15 +10,36 @@ import java.lang.Math;
 public class NNet {
 
     public static final String fileExtension = "nnet";
-    public static final String networkFile = "XORnet";
+    public static final String networkFile = "TraiNet";
     public static void main(String args[]) {
-        
-        Network net = Networks.XORnet();
 
-        net.Run();
-        printNetwork(net);
-        System.out.println("\n");
-        printNetworkSignals(net);
+        double[][] data = {
+            {0,0},
+            {1,0},
+            {0,1},
+            {1,1}
+        };
+        double[][] truths = {
+            {0},
+            {1},
+            {1},
+            {0}
+            };
+
+        Network net = new Network(new MeanSqr())
+            .addInputLayer(data[0], new Input())
+            .addHiddenLayer(2, new Sigmoid())
+            .addOutputLayer(1, new Sigmoid())
+        ;
+
+        for(int i=0; i < data.length; i++) {
+            net.setInputData(data[i])
+               .Run();
+            System.out.println("\n");
+            printNetworkSignals(net);
+            
+            System.out.println( "O: " + net.getLoss(truths[i]));
+        }
     }
 
     public static Network loadNetwork(String path) {

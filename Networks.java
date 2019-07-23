@@ -1,10 +1,11 @@
 import Function.*;
+import Loss.*;
 
 public class Networks {
     public static Network XORnet() {
-        double[] inputData = {1.0,1.0};
+        double[] inputData = {1.0,0.0};
 
-        Network net = new Network()
+        Network net = new Network(new MeanSqr())
             .addInputLayer(inputData, new Input())
             .addHiddenLayer(2, new Sigmoid())
             .addOutputLayer(1, new Sigmoid()
